@@ -1,0 +1,6 @@
+#virtulenv setup
+https://gist.github.com/pandafulmanda/730a9355e088a9970b18275cb9eadef3
+
+#getting start with github integration
+https://saralgyaan.com/posts/best-way-to-start-a-django-project-with-github-integration/
+
