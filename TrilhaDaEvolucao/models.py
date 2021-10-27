@@ -55,9 +55,4 @@ class AreaAcompanhamento(models.Model):
     observacao =  models.CharField(max_length=255)
     completude = models.FloatField(null=True,blank=True)
 
-class Agendamentos(models.Model):
-    data_hora = models.DateTimeField()
-    tipo = models.CharField(max_length=1)
-    id_tipo = models.BigIntegerField()
-    def __str__(self):
-        return self.nome
+

@@ -15,8 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.views.generic import TemplateView
+from TrilhaDaEvolucao import views
+
+from Agendamento.models import Agendamentos
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('agendamentos/',TemplateView.as_view(template_name='index.html'), name='index'),
+    path('',TemplateView.as_view(template_name='index.html'), name='index'),
+    path('ajuda/',TemplateView.as_view(template_name='ajuda.html'), name='Ajuda'),
+    path('agendamentos/novo',views.NovoAgendamento.as_view(),name = 'NovoAgendamento'),
 
 ]
