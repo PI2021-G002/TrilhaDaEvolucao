@@ -18,13 +18,13 @@ from django.urls import path
 from django.views.generic import TemplateView
 from TrilhaDaEvolucao import views
 
-from Agendamento.models import Agendamentos
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('agendamentos/',TemplateView.as_view(template_name='index.html'), name='index'),
     path('',TemplateView.as_view(template_name='index.html'), name='index'),
+    path('admin/', admin.site.urls),
     path('ajuda/',TemplateView.as_view(template_name='ajuda.html'), name='Ajuda'),
-    path('agendamentos/novo',views.NovoAgendamento.as_view(),name = 'NovoAgendamento'),
+    path('agendamentos/',TemplateView.as_view(template_name='Agendamentos.html'), name='agendamento'),  
+    path('agendamentos/novo/programa',views.NovoAgendamento.as_view(),name = 'NovoAgendamento'),
+    path('agendamentos/novo/volparc',views.NovoAgendamento.as_view(),name = 'NovoAgendamento'),
 
 ]
