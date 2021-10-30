@@ -36,7 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'TrilhaDaEvolucao'
+    'TrilhaDaEvolucao',
+    
 ]
 
 MIDDLEWARE = [
@@ -76,10 +77,10 @@ WSGI_APPLICATION = 'TrilhaDaEvolucao.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'trilha',
-        'USER': 'trilha',
-        'PASSWORD': 'trllheiros',
-        'HOST': 'localhost',   # Or an IP Address that your database is hosted on
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),   # Or an IP Address that your database is hosted on
         'PORT': '3306',
         #optional:
         'OPTIONS': {
