@@ -9,7 +9,7 @@ from django.contrib.auth import logout
 
 class NovoAgendamento(FormView):
    template_name = "NovoAgendamento.html"
-   form_class = forms.FormNovoAgendamento
+   form_class = forms.FormNovoAgendamentoVoluntario
    success_url = "/"
 
 @login_required
