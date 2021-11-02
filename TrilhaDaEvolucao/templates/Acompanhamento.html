@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+
+{% block conteudo %}
+
+<!--p>
+   <a href="/agendamentos/novo/volparc"><button>Novo Agendamento Voluntario parceiro</button></a>
+    
+ </p>
+ <p>
+    <a href="/agendamentos/novo/programa"><button>Novo Agendamento Programa</button></a>
+ </p-->
+ 
+<h2>Acompanhamentos</h2>
+
+<h1>Geral</h1>
+Área do Programa / Famílias em Acompanhamento / Completude Média
+ {% for acomp in acomp_histogram %}
+<p>{{ acomp.nome }}
+   {{ acomp.numero }} 
+   {{ acomp.media }}</p>
+{% endfor %}
+
+<h1>Por Familia</h1>
+{% for fam in dados_familias %}
+   <p>{{ fam.familia }}
+   {{ fam.area }} 
+   {{ fam.completude }}
+</p>
+{% endfor %}
+
+{% endblock conteudo %}

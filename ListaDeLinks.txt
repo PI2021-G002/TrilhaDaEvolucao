@@ -20,7 +20,10 @@ https://stackoverflow.com/questions/45194182/allowed-hosts-and-django
 https://docs.djangoproject.com/en/3.2/howto/static-files/
 https://docs.djangoproject.com/pt-br/3.0/howto/deployment/wsgi/modwsgi/
 https://docs.djangoproject.com/en/3.2/ref/forms/fields/
+https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 #mysql
 http://devfuria.com.br/sql/mysql-pelo-terminal/
 https://stackoverflow.com/questions/7475223/mysql-config-not-found-when-installing-mysqldb-python-interface
+
+https://stackoverflow.com/questions/2701696/is-it-possible-to-replace-values-in-a-queryset-before-sending-it-to-your-templat

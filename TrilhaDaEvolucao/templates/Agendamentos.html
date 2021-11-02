@@ -1,34 +1,37 @@
 {% extends "base.html" %}
+
+
 {% block conteudo %}
+
+<p>
+   <a href="/agendamentos/novo/volparc"><button>Novo Agendamento Voluntario parceiro</button></a>
+    
+ </p>
+ <p>
+    <a href="/agendamentos/novo/programa"><button>Novo Agendamento Programa</button></a>
+ </p>
+ 
 <h2>Agendamentos</h2>
 
 <h1>Do dia {{ hoje }} </h1>
 {% for evento in v_dia %}
-{{ evento.id }}
-{{ evento.data_hora }}
-{{ evento.tipo }}
-{{ evento.id_tipo }}
-{{ evento.id_familia }}
+<p>{{ evento.id }}
+   {{ evento.data }} {{ evento.time }}
+   {{ evento.get_volparcprog_name }}</p>
 {% endfor %}
 
 <h1>Da Semana - {{ semana }}</h1>
 {% for evento in v_semana %}
-{{ evento.id }}
-{{ evento.data_hora }}
-{{ evento.tipo }}
-{{ evento.id_tipo }}
-{{ evento.id_familia }}
+   <p>{{ evento.id }}
+   {{ evento.data }} {{ evento.time }}
+   {{ evento.get_volparcprog_name }}</p>
 {% endfor %}
 
 <h1>Do mes - {{ mes }}</h1>
-{% for evento in v_mes %}
-{{ evento.id }}
-{{ evento.data_hora }}
-{{ evento.tipo }}
-{{ evento.id_tipo }}
-{{ evento.id_familia }}
+<p>{% for evento in v_mes %}
+   {{ evento.id }}
+   {{ evento.data }} {{ evento.time }}
+   {{ evento.get_volparcprog_name }}</p>
 {% endfor %}
-
-<a href="/agendamentos/novo/volparc"><button>Novo Agendamento</button></a>
 
 {% endblock conteudo %}

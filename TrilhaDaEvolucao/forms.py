@@ -1,10 +1,18 @@
 from django import forms
-from .models import VoluntarioParceiro, Familia, AreaPrograma
+from django.forms.models import ModelForm
+from .models import VoluntarioParceiro, Familia, AreaPrograma, Agendamentos
 
 
 class FormNovoAgendamentoVoluntario(forms.Form): 
-   nome = forms.CharField(required=True)
-   
-   data = forms.DateTimeField(required=True)
-   familia = Familia.objects.all()
-   vol_par = VoluntarioParceiro.objects.all()
+   familia = forms.ModelChoiceField(queryset=Familia.objects.all().order_by('nome'))
+   nome = forms.ModelChoiceField(queryset=VoluntarioParceiro.objects.all().order_by('nome'),label='Nome Voluntário / Parceiro')
+   data = forms.DateTimeField(required=True,widget=forms.SelectDateWidget(),label='Data')
+   hora = forms.CharField(required=True,widget=forms.TextInput(attrs={'type': 'time'}))
+ 
+class FormNovoAgendamentoPrograma(forms.Form): 
+   familia = forms.ModelChoiceField(queryset=Familia.objects.all().order_by('nome'))
+   nome = forms.ModelChoiceField(queryset=AreaPrograma.objects.all().order_by('nome'),label='Área do Programa')
+   data = forms.DateTimeField(required=True,widget=forms.SelectDateWidget(),label='Data')
+   hora = forms.CharField(required=True,widget=forms.TextInput(attrs={'type': 'time'}))
+
+  
