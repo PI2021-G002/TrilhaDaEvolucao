@@ -4,6 +4,7 @@ from .models import VoluntarioParceiro, Familia, AreaPrograma
 
 class FormNovoAgendamentoVoluntario(forms.Form): 
    nome = forms.CharField(required=True)
-   email_origem = forms.EmailField(required=True, label = 'Entre com seu e-mail:')
-   mensagem = forms.CharField(required=True)
-   #vol_par = VoluntarioParceiro.objects
+   
+   data = forms.DateTimeField(required=True)
+   familia = Familia.objects.all()
+   vol_par = VoluntarioParceiro.objects.all()

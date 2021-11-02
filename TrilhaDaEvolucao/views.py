@@ -11,6 +11,7 @@ class NovoAgendamento(FormView):
    template_name = "NovoAgendamento.html"
    form_class = forms.FormNovoAgendamentoVoluntario
    success_url = "/"
+   
 
 @login_required
 def ViewAgendamentos(request):
@@ -34,3 +35,4 @@ def ViewAgendamentos(request):
 def logout_view(request):
     logout(request)
     return render(request,'index.html')
+
