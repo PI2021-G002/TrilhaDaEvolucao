@@ -4,37 +4,48 @@
 {% block conteudo %}
 
 
-<div class="d-grid gap-5 col-6 mx-auto">
-	<p>
-   <a href="/agendamentos/novo/volparc"><button>Novo Agendamento Voluntario parceiro</button></a>
-    
- </p>
- <p>
-    <a href="/agendamentos/novo/programa"><button>Novo Agendamento Programa</button></a>
- </p>
-	<h2>Agendamentos</h2>
-	<div class="row" style="height: 150px;overflow-y: scroll">
-		<table class="table table-dark table-sm">
+<div class="d-grid gap-10 col-6 mx-auto">
+	<table class="table table-sm">
+		<tbody>
+			<tr>
+				<td><a href="/agendamentos/novo/volparc" class="btn btn-primary">Novo Agendamento Voluntario parceiro</a></td>
+				<td><a href="/agendamentos/novo/programa" class="btn btn-primary">Novo Agendamento Programa</a></td>
+			</tr>
+		</tbody>
+	</table>
+	<h3>Agendamentos</h3>
+	<div class="row" style="height: 145px;overflow-y: scroll">
+		<table class="table table-sm">
 			<thead> 
+				<tr>
+				  <th>Do dia {{ hoje }}</th>
+				  <th scope="col">Data e Horário</th>
+				  <th scope="col">Voluntário</th>
+				</tr>
 			</thead>
 			<tbody>
-				<th><h2>Do dia {{ hoje }} </h2></th>
+				
 				{% for evento in v_dia %}
 				<tr>
 					<td>{{ evento.id }}</td>
-				   <td>{{ evento.data }} {{ evento.time }}</td>
-				   <td>{{ evento.get_volparcprog_name }}</td>
+					<td>{{ evento.data }} {{ evento.time }}</td>
+					<td>{{ evento.get_volparcprog_name }}</td>
 				</tr>
 				{% endfor %}
 			</tbody>
 		</table>
 	</div>
-	<div class="row" style="height: 150px;overflow-y: scroll">
-		<table class="table table-dark table-sm">
+	<div class="row" style="height: 145px;overflow-y: scroll">
+		<table class="table table-sm">
 			<thead> 
+				<tr>
+				  <th>Da Semana - {{ semana }}</th>
+				  <th scope="col">Data e Horário</th>
+				  <th scope="col">Voluntário</th>
+				</tr>
 			</thead>
 			<tbody>
-				<th><h2>Da Semana - {{ semana }}</h2></th>
+				
 				{% for evento in v_semana %}
 				<tr>
 				   <td>{{ evento.id }}</td>
@@ -45,12 +56,17 @@
 			</tbody>
 		</table>
 	</div>
-	<div class="row" style="height: 150px;overflow-y: scroll">
-		<table class="table table-dark table-sm">
+	<div class="row" style="height: 145px;overflow-y: scroll">
+		<table class="table table-sm">
 			<thead> 
+				<tr>
+				  <th>Do mes - {{ mes }}</th>
+				  <th scope="col">Data e Horário</th>
+				  <th scope="col">Voluntário</th>
+				</tr>
 			</thead>
 			<tbody>
-				<th><h2>Do mes - {{ mes }}</h2></th>
+				
 				{% for evento in v_mes %}
 				<tr>
 				   <td>{{ evento.id }}</td>

@@ -129,6 +129,7 @@ def getAcompanhentos():
         result = fromCursorToTableData(cursor,row)
     return result
 
+@login_required
 def ViewAcompanhamentos(request):
    acomp_count = getAcompanhentoCount()
    acomp_familias = getAcompanhentos()
