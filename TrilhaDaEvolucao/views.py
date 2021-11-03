@@ -129,6 +129,7 @@ def getAcompanhentos():
         result = fromCursorToTableData(cursor,row)
     return result
 
+@login_required
 def ViewAcompanhamentos(request):
    acomp_count = getAcompanhentoCount()
    acomp_familias = getAcompanhentos()
@@ -138,9 +139,4 @@ def ViewAcompanhamentos(request):
        'dados_familias' : acomp_familias,
        'familias_count' : Familia.objects.count(),
        'areas_count'    : AreaPrograma.objects.count(),
-
- 
    } )
-
-   
-
