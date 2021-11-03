@@ -11,22 +11,51 @@
     <a href="/agendamentos/novo/programa"><button>Novo Agendamento Programa</button></a>
  </p-->
  
-<h2>Acompanhamentos</h2>
 
-<h1>Geral</h1>
-Área do Programa / Famílias em Acompanhamento / Completude Média
- {% for acomp in acomp_histogram %}
-<p>{{ acomp.nome }}
-   {{ acomp.numero }} 
-   {{ acomp.media }}</p>
-{% endfor %}
-
-<h1>Por Familia</h1>
-{% for fam in dados_familias %}
-   <p>{{ fam.familia }}
-   {{ fam.area }} 
-   {{ fam.completude }}
-</p>
-{% endfor %}
-
+<div class="d-grid gap-10 col-6 mx-auto">
+	<h1>Acompanhamentos</h1>
+	<h2>Geral</h2>
+	<div class="row" style="height: 150px;overflow-y: scroll">
+		<table class="table">
+			<thead>
+				<tr>
+				  <th scope="col">Área do Programa</th>
+				  <th scope="col">Famílias em Acompanhamento</th>
+				  <th scope="col">Completude Média</th>
+				</tr>
+			</thead>
+			<tbody>
+			<!--Área do Programa / Famílias em Acompanhamento / Completude Média-->
+			 {% for acomp in acomp_histogram %}
+				<tr>
+					<td>{{ acomp.nome }}</td>
+					<td>{{ acomp.numero }}</td>
+					<td>{{ acomp.media }}</td>
+					</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+	</div>
+	<h2>Por Familia</h2>
+	<div class="row" style="height: 150px;overflow-y: scroll">
+		<table class="table">
+			<thead>
+				<tr>
+				  <th scope="col">Familia</th>
+				  <th scope="col">Área</th>
+				  <th scope="col">Completude</th>
+			</thead>
+			<tbody>
+				{% for fam in dados_familias %}
+				<tr>
+					<td>{{ fam.familia }}</td>
+				    <td>{{ fam.area }}</td>
+				    <td>{{ fam.completude }}</td>
+				</tr>
+				{% endfor %}
+			</body>
+		</table>
+	</div>
+</div>
 {% endblock conteudo %}
