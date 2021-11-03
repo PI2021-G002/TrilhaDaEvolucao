@@ -16,16 +16,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from django.views.generic import TemplateView
-from TrilhaDaEvolucao import views
+from .views import *
+from django.http import HttpRequest,HttpResponse
 
 urlpatterns = [
     path('',TemplateView.as_view(template_name='index.html'), name='index'),
-    path('accounts/logout',views.logout_view, name='Logout'),
+    path('accounts/logout',logout_view, name='Logout'),
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
     path('ajuda/',TemplateView.as_view(template_name='ajuda.html'), name='Ajuda'),
-    path('agendamentos/',views.ViewAgendamentos, name='agendamento'),  
-    path('agendamentos/novo/programa',views.NovoAgendamento.as_view(),name = 'NovoAgendamento'),
-    path('agendamentos/novo/volparc',views.NovoAgendamento.as_view(),name = 'NovoAgendamento'),
+    path('agendamentos/',ViewAgendamentos, name='agendamento'),  
+    path('agendamentos/novo/programa',NovoAgendamentoPrograma,name = 'NovoAgendamento'),
+    path('agendamentos/novo/volparc',NovoAgendamentoVolParc,name = 'NovoAgendamentoVolParc'),
+    path('acompanhamentos',ViewAcompanhamentos,name = 'Acompanhamentos'),
 
 ]
