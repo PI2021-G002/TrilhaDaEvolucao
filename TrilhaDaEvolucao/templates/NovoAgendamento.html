@@ -1,10 +1,30 @@
 {% extends "base.html" %}
 {% block conteudo %}
-<h2>Novo agendamento</h2>
-<p></p>
-<form method="POST">
-{% csrf_token %}
-{{ form }}
-<button type="submit" class="btn btn-primary">Enviar</button>
-</form>
+<!--div class="d-grid gap-10 col-6 mx-auto"-->
+<div class="container">
+	<div class="row">
+		<div class="col-sm"></div>
+		<div class="col-sm-6">
+			<h2>Novo agendamento</h2>
+		</div>
+		<div class="col-sm">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm"></div>
+		<div class="col-sm-6">
+		
+			<form method="POST">
+				<table class="table table-sm">
+					{% csrf_token %}
+
+					{{ form.as_table }}
+				</table>
+				<button type="submit" class="btn btn-primary">Enviar</button>
+			</form>
+		</div>
+		<div class="col-sm"></div>
+	</div>
+</div>
+<!--/div-->
 {% endblock conteudo %}

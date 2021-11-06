@@ -1,34 +1,115 @@
 {% extends "base.html" %}
+
+
 {% block conteudo %}
-<h2>Agendamentos</h2>
 
-<h1>Do dia {{ hoje }} </h1>
-{% for evento in v_dia %}
-{{ evento.id }}
-{{ evento.data_hora }}
-{{ evento.tipo }}
-{{ evento.id_tipo }}
-{{ evento.id_familia }}
-{% endfor %}
 
-<h1>Da Semana - {{ semana }}</h1>
-{% for evento in v_semana %}
-{{ evento.id }}
-{{ evento.data_hora }}
-{{ evento.tipo }}
-{{ evento.id_tipo }}
-{{ evento.id_familia }}
-{% endfor %}
-
-<h1>Do mes - {{ mes }}</h1>
-{% for evento in v_mes %}
-{{ evento.id }}
-{{ evento.data_hora }}
-{{ evento.tipo }}
-{{ evento.id_tipo }}
-{{ evento.id_familia }}
-{% endfor %}
-
-<button>Novo Agendamento</button>
-
+<!--div class="d-grid gap-10 col-6 mx-auto"-->
+<div class="container">
+	<div class="row">
+		<div class="col-sm"></div>
+		<div class="col-sm-8">
+			<table class="table">
+				<tbody>
+					<tr>
+						<td><a href="/agendamentos/novo/volparc" class="btn btn-primary btn-sm">Novo Agendamento Voluntario parceiro</a>
+						<a href="/agendamentos/novo/programa" class="btn btn-primary btn-sm">Novo Agendamento Programa</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-sm"></div>
+	</div>
+	<div class="row">
+		<div class="col-sm"></div>
+		<div class="col-sm-8">
+			<h4>Agendamentos</h4>
+		</div>
+		<div class="col-sm"></div>
+	</div>
+	<div class="row">
+		<div class="col-sm"></div>
+		<div class="col-sm-8">
+			<div class="row" style="height: 130px;overflow-y: scroll">
+				<table class="table">
+					<thead> 
+						<tr>
+						  <th>Do dia {{ hoje }}</th>
+						  <th scope="col">Data e Horário</th>
+						  <th scope="col">Voluntário</th>
+						</tr>
+					</thead>
+					<tbody>
+						
+						{% for evento in v_dia %}
+						<tr>
+							<td>{{ evento.id }}</td>
+							<td>{{ evento.data }} {{ evento.time }}</td>
+							<td>{{ evento.get_volparcprog_name }}</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="col-sm"></div>
+	</div>
+	<div class="row"><p></p></div>
+	<div class="row">
+		<div class="col-sm"></div>
+		<div class="col-sm-8">
+			<div class="row" style="height: 130px;overflow-y: scroll">
+				<table class="table">
+					<thead> 
+						<tr>
+						  <th>Da Semana - {{ semana }}</th>
+						  <th scope="col">Data e Horário</th>
+						  <th scope="col">Voluntário</th>
+						</tr>
+					</thead>
+					<tbody>
+						
+						{% for evento in v_semana %}
+						<tr>
+						   <td>{{ evento.id }}</td>
+						   <td>{{ evento.data }} {{ evento.time }}</td>
+						   <td>{{ evento.get_volparcprog_name }}</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="col-sm"></div>
+	</div>
+	<div class="row"><p></p></div>
+	<div class="row">
+		<div class="col-sm"></div>
+		<div class="col-sm-8">
+			<div class="row" style="height: 130px;overflow-y: scroll">
+				<table class="table">
+					<thead> 
+						<tr>
+						  <th>Do mes - {{ mes }}</th>
+						  <th scope="col">Data e Horário</th>
+						  <th scope="col">Voluntário</th>
+						</tr>
+					</thead>
+					<tbody>
+						
+						{% for evento in v_mes %}
+						<tr>
+						   <td>{{ evento.id }}</td>
+						   <td>{{ evento.data }} {{ evento.time }}</td>
+						   <td>{{ evento.get_volparcprog_name }}</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="col-sm"></div>
+	</div>
+</div>
+<!--/div-->
 {% endblock conteudo %}

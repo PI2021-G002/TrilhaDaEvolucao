@@ -6,3 +6,24 @@ https://saralgyaan.com/posts/best-way-to-start-a-django-project-with-github-inte
 
 #configurar mysql-mariaDB no django
 https://riptutorial.com/django/example/17418/mysql---mariadb
+
+#configurar o apache e ubuntu com python wsgi
+https://www.williamzimmermann.com.br/como-configurar-o-django-em-um-servidor-ubuntu-com-apache-parte-1/
+https://www.williamzimmermann.com.br/como-configurar-o-django-em-um-servidor-ubuntu-com-apache-parte-2/
+
+#Criar o arquivo requirements.txt
+http://www.learningaboutelectronics.com/Articles/How-to-create-a-requirements-txt-file-for-a-Django-project.php
+
+#Django
+https://docs.djangoproject.com/en/3.2/ref/forms/fields/
+https://stackoverflow.com/questions/45194182/allowed-hosts-and-django
+https://docs.djangoproject.com/en/3.2/howto/static-files/
+https://docs.djangoproject.com/pt-br/3.0/howto/deployment/wsgi/modwsgi/
+https://docs.djangoproject.com/en/3.2/ref/forms/fields/
+https://docs.djangoproject.com/en/3.2/howto/static-files/
+
+#mysql
+http://devfuria.com.br/sql/mysql-pelo-terminal/
+https://stackoverflow.com/questions/7475223/mysql-config-not-found-when-installing-mysqldb-python-interface
+
+https://stackoverflow.com/questions/2701696/is-it-possible-to-replace-values-in-a-queryset-before-sending-it-to-your-templat

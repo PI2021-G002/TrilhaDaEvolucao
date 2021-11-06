@@ -56,11 +56,23 @@ class AreaAcompanhamento(models.Model):
     completude = models.FloatField(null=True,blank=True)
 
 class Agendamentos(models.Model):
-    data_hora = models.DateField(auto_now=False, auto_now_add=False)
+    data = models.DateField(auto_now=False, auto_now_add=False)
+    time = models.TimeField(auto_now=False, auto_now_add=False, null=True )
     id_familia = models.ForeignKey(
        Familia,
        on_delete=models.DO_NOTHING
     )
     tipo = models.CharField(max_length=1)
     id_tipo = models.BigIntegerField() 
+    
+    @property
+    def get_volparcprog_name(self):
+        if self.tipo == "V":
+          temp = VoluntarioParceiro.objects.filter(id=self.id_tipo).values('nome').last()
+          return str("Com Voluntário / Parceiro " + temp['nome'])
+        else:
 
+            if self.tipo == "P":
+                temp = AreaPrograma.objects.filter(id=self.id_tipo).values('nome').last()
+                return str("Programa " + temp['nome'])
+        return str("") 
