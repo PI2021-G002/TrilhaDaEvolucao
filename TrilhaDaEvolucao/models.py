@@ -57,7 +57,7 @@ class AreaAcompanhamento(models.Model):
 
 class Agendamentos(models.Model):
     data = models.DateField(auto_now=False, auto_now_add=False)
-    time = models.TimeField(auto_now=False, auto_now_add=False, null=True )
+    hora = models.TimeField(auto_now=False, auto_now_add=False, null=True )
     id_familia = models.ForeignKey(
        Familia,
        on_delete=models.DO_NOTHING

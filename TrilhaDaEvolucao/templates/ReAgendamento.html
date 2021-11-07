@@ -1,11 +1,9 @@
 {% extends "base.html" %}
 {% block conteudo %}
 <div class="d-grid gap-10 col-6 mx-auto">
-	{% if form.idr.value == None %}
-	  <h2>Novo agendamento</h2>
-	{% else %}
+
 	  <h2>Re-agendamento</h2>
-	{% endif %}
+
 	<form method="POST">
 		<table class="table table-sm">
 			{% csrf_token %}

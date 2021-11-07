@@ -28,6 +28,11 @@ urlpatterns = [
     path('agendamentos/',ViewAgendamentos, name='agendamento'),  
     path('agendamentos/novo/programa',NovoAgendamentoPrograma,name = 'NovoAgendamento'),
     path('agendamentos/novo/volparc',NovoAgendamentoVolParc,name = 'NovoAgendamentoVolParc'),
+    path('agendamentos/novo/programa/<int:id>/',ReAgendamentoPrograma,name = 'ReAgendamento'),
+    path('agendamentos/novo/volparc/<int:id>/',ReAgendamentoVolParc,name = 'ReAgendamentoVolParc'),
     path('acompanhamentos',ViewAcompanhamentos,name = 'Acompanhamentos'),
 
 ]
+
+admin.site.site_header  =  "Administração do site Trilha da Evolução"  
+admin.site.index_title  =  "Administração de Usuários, Permissões e Cadastros"
