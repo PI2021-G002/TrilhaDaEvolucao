@@ -2,102 +2,135 @@
 
 {% block conteudo %}
 
-<div class="d-grid gap-10 col-6 mx-auto">
-	<table class="table table-sm">
-		<tbody>
-			<tr>
-				<td><a href="/agendamentos/novo/volparc" class="btn btn-primary">Novo Agendamento Voluntario parceiro</a></td>
-				<td><a href="/agendamentos/novo/programa" class="btn btn-primary">Novo Agendamento Programa</a></td>
-			</tr>
-		</tbody>
-	</table>
-	<h3>Agendamentos</h3>
-	<div class="row" style="height: 145px;overflow-y: scroll">
-		<table class="table table-sm">
-			<thead> 
-				<tr>
-				  <th>Do dia {{ hoje }}</th>
-				  <th scope="col">Data e Horário</th>
-				  <th scope="col">Voluntário</th>
-				  <th>Ação</th>
-				</tr>
-			</thead>
-			<tbody>
-				
-				{% for evento in v_dia %}
-				<tr>
-					<td>{{ evento.id }}</td>
-					<td>{{ evento.data }} {{ evento.time }}</td>
-					<td>{{ evento.get_volparcprog_name }}</td>
-					<td>
-						{% if evento.tipo == 'P' %}
-							<a href="novo/programa/{{evento.id}}/">Reagendar</a>
-						{% else %}	
-							<a href="novo/volparc/{{evento.id}}/">Reagendar</a>
-						{% endif %}
-						</td>
+<div class="container">
+	<div class="row">
+		<div class="col-sm"></div>
+		<div class="col-sm-8">
+			<table class="table">
+				<tbody>
+					<tr>
+						<td><a href="/agendamentos/novo/volparc" class="btn btn-primary">Novo Agendamento Voluntario parceiro</a></td>
+						<td><a href="/agendamentos/novo/programa" class="btn btn-primary">Novo Agendamento Programa</a></td>
 					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-sm"></div>
 	</div>
-	<div class="row" style="height: 145px;overflow-y: scroll">
-		<table class="table table-sm">
-			<thead> 
-				<tr>
-				  <th>Da Semana - {{ semana }}</th>
-				  <th scope="col">Data e Horário</th>
-				  <th scope="col">Voluntário</th>
-				  <th>Ação</th>
-				</tr>
-			</thead>
-			<tbody>
-				
-				{% for evento in v_semana %}
-				<tr>
-				   <td>{{ evento.id }}</td>
-				   <td>{{ evento.data }} {{ evento.time }}</td>
-				   <td>{{ evento.get_volparcprog_name }}</td>
-					<td>
-						{% if evento.tipo == 'P' %}
-							<a href="novo/programa/{{evento.id}}/">Reagendar</a>
-						{% else %}	
-							<a href="novo/volparc/{{evento.id}}/">Reagendar</a>
-						{% endif %}
-						</td>
-				</tr>
-				{% endfor %}
-			</tbody>
-		</table>
+	<div class="row">
+		<div class="col-sm"></div>
+		<div class="col-sm-8">
+			<h4>Agendamentos</h4>
+		</div>
+		<div class="col-sm"></div>
 	</div>
-	<div class="row" style="height: 145px;overflow-y: scroll">
-		<table class="table table-sm">
-			<thead> 
-				<tr>
-				  <th>Do mes - {{ mes }}</th>
-				  <th scope="col">Data e Horário</th>
-				  <th scope="col">Voluntário</th>
-				  <th>Ação</th>
-				</tr>
-			</thead>
-			<tbody>
+	<div class="row">
+		<div class="col-sm"></div>
+		<div class="col-sm-8">
+			<div class="row" style="height: 130px;overflow-y: scroll">
+				<table class="table">
+					<thead> 
+						<tr>
+							<th>Do dia {{ hoje }}</th>
+							<th scope="col">Data e Horário</th>
+							<th scope="col">Voluntário</th>
+							<th>Ação</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for evento in v_dia %}
+						<tr>
+							<td>{{ evento.id }}</td>
+							<td>{{ evento.data }} {{ evento.time }}</td>
+							<td>{{ evento.get_volparcprog_name }}</td>
+							<td>
+								{% if evento.tipo == 'P' %}
+									<a href="novo/programa/{{evento.id}}/">Reagendar</a>
+								{% else %}	
+									<a href="novo/volparc/{{evento.id}}/">Reagendar</a>
+								{% endif %}
+							</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="col-sm"></div>
+	</div>		
+	<div class="row"><p></p></div>
+	<div class="row">
+		<div class="col-sm"></div>
+		<div class="col-sm-8">
+			<div class="row" style="height: 130px;overflow-y: scroll">
+				<table class="table">
+					<thead> 
+						<tr>
+							<th>Da Semana - {{ semana }}</th>
+							<th scope="col">Data e Horário</th>
+							<th scope="col">Voluntário</th>
+							<th>Ação</th>
+						</tr>
+					</thead>
+					<tbody>
 				
-				{% for evento in v_mes %}
-				<tr>
-				   <td>{{ evento.id }}</td>
-				   <td>{{ evento.data }} {{ evento.time }}</td>
-				   <td>{{ evento.get_volparcprog_name }}</td>
-					<td>
-						{% if evento.tipo == 'P' %}
-							<a href="novo/programa/{{evento.id}}/">Reagendar</a>
-						{% else %}	
-							<a href="novo/volparc/{{evento.id}}/">Reagendar</a>
-						{% endif %}
-						</td>
-				</tr>
-				{% endfor %}
-			</tbody>
-		</table>
+						{% for evento in v_semana %}
+						<tr>
+							<td>{{ evento.id }}</td>
+							<td>{{ evento.data }} {{ evento.time }}</td>
+							<td>{{ evento.get_volparcprog_name }}</td>
+							<td>
+								{% if evento.tipo == 'P' %}
+									<a href="novo/programa/{{evento.id}}/">Reagendar</a>
+								{% else %}	
+									<a href="novo/volparc/{{evento.id}}/">Reagendar</a>
+								{% endif %}
+								</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="col-sm"></div>
+	</div>
+	<div class="row"><p></p></div>			
+	<div class="row">
+		<div class="col-sm"></div>
+		<div class="col-sm-8">
+			<div class="row" style="height: 130px;overflow-y: scroll">
+				<table class="table">
+					<thead> 
+						<tr>
+						<th>Do mes - {{ mes }}</th>
+						<th scope="col">Data e Horário</th>
+						<th scope="col">Voluntário</th>
+						<th>Ação</th>
+						</tr>
+					</thead>
+					<tbody>
+						
+						{% for evento in v_mes %}
+						<tr>
+							<td>{{ evento.id }}</td>
+							<td>{{ evento.data }} {{ evento.time }}</td>
+							<td>{{ evento.get_volparcprog_name }}</td>
+							<td>
+								{% if evento.tipo == 'P' %}
+									<a href="novo/programa/{{evento.id}}/">Reagendar</a>
+								{% else %}	
+									<a href="novo/volparc/{{evento.id}}/">Reagendar</a>
+								{% endif %}
+								</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="col-sm"></div>
+		
 	</div>
 </div>
+<!--/div-->
 {% endblock conteudo %}
