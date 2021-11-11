@@ -1,29 +1,32 @@
 from typing_extensions import Annotated
 from django.db import models
 
-class VoluntarioParceiro(models.Model):
+class Voluntario(models.Model):
     nome = models.CharField(max_length=50)
     telefone = models.CharField(max_length=15)
     disponibilidade = models.CharField(max_length=100)
     def __str__(self):
         return self.nome
 
-class AreaVoluntarioParceiro(models.Model):
+class AreaVoluntario(models.Model):
     nome = models.CharField(max_length=50)
     descricao = models.CharField(max_length=50)
     def __str__(self):
         return self.nome
-    
-class AreaAtuacaoVoluntarioParceiro(models.Model):
-    id_vol_par = models.ForeignKey(
-       VoluntarioParceiro,
-       on_delete=models.DO_NOTHING
-    )
-    id_area_vol_par = models.ForeignKey(
-       AreaVoluntarioParceiro,
-       on_delete=models.DO_NOTHING
-    )
 
+        
+    
+class AreaAtuacaoVoluntario(models.Model):
+    id_vol = models.ForeignKey(
+       Voluntario,
+       on_delete=models.DO_NOTHING
+    )
+    id_area_vol = models.ForeignKey(
+       AreaVoluntario,
+       on_delete=models.DO_NOTHING
+    )
+    descricao = models.CharField(max_length=1000)
+    
 class Familia(models.Model):
     nome = models.CharField(max_length=50)
     telefone = models.CharField(max_length=15)
@@ -57,7 +60,7 @@ class AreaAcompanhamento(models.Model):
 
 class Agendamentos(models.Model):
     data = models.DateField(auto_now=False, auto_now_add=False)
-    time = models.TimeField(auto_now=False, auto_now_add=False, null=True )
+    hora = models.TimeField(auto_now=False, auto_now_add=False, null=True )
     id_familia = models.ForeignKey(
        Familia,
        on_delete=models.DO_NOTHING
@@ -68,11 +71,38 @@ class Agendamentos(models.Model):
     @property
     def get_volparcprog_name(self):
         if self.tipo == "V":
-          temp = VoluntarioParceiro.objects.filter(id=self.id_tipo).values('nome').last()
-          return str("Com Voluntário / Parceiro " + temp['nome'])
-        else:
-
-            if self.tipo == "P":
-                temp = AreaPrograma.objects.filter(id=self.id_tipo).values('nome').last()
-                return str("Programa " + temp['nome'])
+          temp = Voluntario.objects.filter(id=self.id_tipo).values('nome').last()
+          return str("Com Voluntário " + temp['nome'])
+        
+        if self.tipo == "R":
+          temp = Parceiro.objects.filter(id=self.id_tipo).values('nome').last()
+          return str("Com Parceiro " + temp['nome'])
+ 
+        if self.tipo == "P":
+            temp = AreaPrograma.objects.filter(id=self.id_tipo).values('nome').last()
+            return str("Programa " + temp['nome'])
         return str("") 
+
+class Parceiro(models.Model):
+    nome = models.CharField(max_length=50)
+    telefone = models.CharField(max_length=15)
+    disponibilidade = models.CharField(max_length=100)
+    def __str__(self):
+        return self.nome
+
+class AreaParceiro(models.Model):
+    nome = models.CharField(max_length=50)
+    descricao = models.CharField(max_length=50)
+    def __str__(self):
+        return self.nome
+
+class AreaAtuacaoParceiro(models.Model):
+    id_par = models.ForeignKey(
+       Parceiro,
+       on_delete=models.DO_NOTHING
+    )
+    id_area_par = models.ForeignKey(
+       AreaParceiro,
+       on_delete=models.DO_NOTHING
+    )
+    descricao = models.CharField(max_length=1000)

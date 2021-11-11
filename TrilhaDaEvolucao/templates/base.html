@@ -20,6 +20,14 @@ initial-scale=1, shrink-to-fit=no">
 </head>
 
 <body>
+   {% for msg in messages %}
+   <div class="alert alert-warning alert-dismissible fade show" role="alert">
+       <strong>Hey !</strong> {{msg}}
+       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+       </button>
+   </div>
+{% endfor %}
 
 {% include 'nav.html' %}
 

@@ -5,7 +5,9 @@
 	<div class="row">
 		<div class="col-sm"></div>
 		<div class="col-sm-6">
-			<h2>Novo agendamento</h2>
+
+				<h2>Novo agendamento</h2>
+
 		</div>
 		<div class="col-sm">
 		</div>
@@ -17,7 +19,7 @@
 			<form method="POST">
 				<table class="table table-sm">
 					{% csrf_token %}
-
+					{{ form.idr }}
 					{{ form.as_table }}
 				</table>
 				<button type="submit" class="btn btn-primary">Enviar</button>
