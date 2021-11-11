@@ -9,7 +9,8 @@
 			<table class="table">
 				<tbody>
 					<tr>
-						<td><a href="/agendamentos/novo/volparc" class="btn btn-primary">Novo Agendamento Voluntario parceiro</a></td>
+						<td><a href="/agendamentos/novo/voluntario" class="btn btn-primary">Novo Agendamento Com Voluntario</a></td>
+						<td><a href="/agendamentos/novo/parceiro" class="btn btn-primary">Novo Agendamento Com Parceiro</a></td>
 						<td><a href="/agendamentos/novo/programa" class="btn btn-primary">Novo Agendamento Programa</a></td>
 					</tr>
 				</tbody>
@@ -29,11 +30,13 @@
 		<div class="col-sm-8">
 			<div class="row" style="height: 130px;overflow-y: scroll">
 				<table class="table">
+					
 					<thead> 
+						<tr>Do dia - {{ hoje }}</tr>
 						<tr>
-							<th>Do dia {{ hoje }}</th>
+							<th>id</th>
 							<th scope="col">Data e Horário</th>
-							<th scope="col">Voluntário</th>
+							<th scope="col">Tipo</th>
 							<th>Ação</th>
 						</tr>
 					</thead>
@@ -47,7 +50,11 @@
 								{% if evento.tipo == 'P' %}
 									<a href="novo/programa/{{evento.id}}/">Reagendar</a>
 								{% else %}	
-									<a href="novo/volparc/{{evento.id}}/">Reagendar</a>
+								   {% if evento.tipo == 'V' %}
+									  <a href="novo/voluntario/{{evento.id}}/">Reagendar</a>
+									{% else %}
+										<a href="novo/parceiro/{{evento.id}}/">Reagendar</a>
+									{% endif %}
 								{% endif %}
 							</td>
 						</tr>
@@ -65,10 +72,10 @@
 			<div class="row" style="height: 130px;overflow-y: scroll">
 				<table class="table">
 					<thead> 
+						<tr>Da Semana - {{ semana }}</tr>
 						<tr>
-							<th>Da Semana - {{ semana }}</th>
 							<th scope="col">Data e Horário</th>
-							<th scope="col">Voluntário</th>
+							<th scope="col">Tipo</th>
 							<th>Ação</th>
 						</tr>
 					</thead>
@@ -83,7 +90,11 @@
 								{% if evento.tipo == 'P' %}
 									<a href="novo/programa/{{evento.id}}/">Reagendar</a>
 								{% else %}	
-									<a href="novo/volparc/{{evento.id}}/">Reagendar</a>
+								   {% if evento.tipo == 'V' %}
+									  <a href="novo/voluntario/{{evento.id}}/">Reagendar</a>
+									{% else %}
+										<a href="novo/parceiro/{{evento.id}}/">Reagendar</a>
+									{% endif %}
 								{% endif %}
 								</td>
 						</tr>
@@ -101,11 +112,11 @@
 			<div class="row" style="height: 130px;overflow-y: scroll">
 				<table class="table">
 					<thead> 
+						<tr>Do mês - {{ mes }}</tr>
 						<tr>
-						<th>Do mes - {{ mes }}</th>
-						<th scope="col">Data e Horário</th>
-						<th scope="col">Voluntário</th>
-						<th>Ação</th>
+							<th scope="col">Data e Horário</th>
+							<th scope="col">Tipo</th>
+							<th>Ação</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -119,7 +130,11 @@
 								{% if evento.tipo == 'P' %}
 									<a href="novo/programa/{{evento.id}}/">Reagendar</a>
 								{% else %}	
-									<a href="novo/volparc/{{evento.id}}/">Reagendar</a>
+								   {% if evento.tipo == 'V' %}
+									  <a href="novo/voluntario/{{evento.id}}/">Reagendar</a>
+									{% else %}
+										<a href="novo/parceiro/{{evento.id}}/">Reagendar</a>
+									{% endif %}
 								{% endif %}
 								</td>
 						</tr>

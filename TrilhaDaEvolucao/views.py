@@ -4,12 +4,13 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth import logout
 from django.http import HttpResponseRedirect, HttpResponse
-from .forms import FormNovoAgendamentoPrograma, FormNovoAgendamentoVoluntario, FormReAgendamentoVoluntario, FormReAgendamentoPrograma
+from .forms import FormNovoAgendamentoPrograma, FormNovoAgendamentoVoluntario, FormReAgendamentoVoluntario, FormReAgendamentoPrograma, FormNovoAgendamentoParceiro, FormReAgendamentoParceiro
 from datetime import date, datetime
 from django.db import connection
 from django.contrib import messages
 
-def NovoAgendamentoVolParc(request,id=0):
+@login_required
+def NovoAgendamentoVoluntario(request,id=0):
    # if this is a POST request we need to process the form data
    if request.method == 'POST':
       # create a form instance and populate it with data from the request:
@@ -31,7 +32,8 @@ def NovoAgendamentoVolParc(request,id=0):
          form = FormNovoAgendamentoVoluntario()
    return render(request, 'NovoAgendamento.html', {'form': form})
 
-def ReAgendamentoVolParc(request,id=0):
+@login_required
+def ReAgendamentoVoluntario(request,id=0):
    # if this is a POST request we need to process the form data
    if request.method == 'POST':
       # create a form instance and populate it with data from the request:
@@ -65,8 +67,69 @@ def ReAgendamentoVolParc(request,id=0):
          'tipo': evento[0].tipo,
          'idr': id
          })
+   return render(request, 'ReAgendamento.html', {'form': form})
+
+@login_required
+def NovoAgendamentoParceiro(request,id=0):
+   # if this is a POST request we need to process the form data
+   if request.method == 'POST':
+      # create a form instance and populate it with data from the request:
+      form = FormNovoAgendamentoParceiro(request.POST)
+      # check whether it's valid:
+        
+      if form.is_valid() and (form.cleaned_data['data'].isoformat() >= datetime.now().isoformat()):
+         ### save data
+         data = request.POST.__getitem__('data_year') + '-' + request.POST.__getitem__('data_month') + '-' + request.POST.__getitem__('data_day')
+         hora = request.POST.__getitem__('hora')
+         familia = Familia()
+         familia.id=request.POST.__getitem__('familia')
+         tipo = 'R'
+         id_tipo = request.POST.__getitem__('nome')
+         agendamento = Agendamentos.objects.create(data=data,hora=hora,id_familia=familia,tipo=tipo,id_tipo=id_tipo)
+         messages.success(request,"Agendamento Criado com Sucesso")
+    # if a GET (or any other method) we'll create a blank or filled form
+   else:
+         form = FormNovoAgendamentoParceiro()
    return render(request, 'NovoAgendamento.html', {'form': form})
 
+@login_required
+def ReAgendamentoParceiro(request,id=0):
+   # if this is a POST request we need to process the form data
+   if request.method == 'POST':
+      # create a form instance and populate it with data from the request:
+      form = FormReAgendamentoParceiro(request.POST)
+      # check whether it's valid:
+       
+      if form.is_valid() and (form.cleaned_data['data'].isoformat() >= datetime.now().isoformat()):
+         ### save data
+         data = request.POST.__getitem__('data_year') + '-' + request.POST.__getitem__('data_month') + '-' + request.POST.__getitem__('data_day')
+         hora = request.POST.__getitem__('hora')
+         familia = Familia()
+         familia.id=request.POST.__getitem__('familia')
+         tipo = 'R'
+         id_tipo = request.POST.__getitem__('nome')
+         agendamento = Agendamentos.objects.create(data=data,hora=hora,id_familia=familia,tipo=tipo,id_tipo=id_tipo)
+         if request.POST.__getitem__('idr'):
+            agendamento = Agendamentos.objects.filter(id=request.POST.__getitem__('idr'))
+            agendamento.delete()
+         messages.success(request,"Agendamento Criado com Sucesso")
+    # if a GET (or any other method) we'll create a blank or filled form
+   else:
+      evento = Agendamentos.objects.filter(id=id)
+      #return HttpResponse(evento)
+      #dados = {'id': id, 'tipo': evento.tipo, 'data': evento.data, 'hora': evento.hora, 'id_tipo': evento.id_tipo, 'id_familia': evento.id_familia_id}
+      # {'id': 3, 'data': datetime.date(2021, 11, 28), 'hora': None, 'id_familia_id': 1, 'tipo': 'A', 'id_tipo': 1}
+      form = FormReAgendamentoParceiro(initial={
+         'data' : evento[0].data, 
+         'hora' : evento[0].hora,
+         'nome': evento[0].id_tipo,
+         'familia': evento[0].id_familia_id,
+         'tipo': evento[0].tipo,
+         'idr': id
+         })
+   return render(request, 'ReAgendamento.html', {'form': form})
+
+@login_required
 def NovoAgendamentoPrograma(request,id=0):
    # if this is a POST request we need to process the form data
    if request.method == 'POST':
@@ -90,6 +153,7 @@ def NovoAgendamentoPrograma(request,id=0):
          form = FormNovoAgendamentoPrograma()
    return render(request, 'NovoAgendamento.html', {'form': form})
 
+@login_required
 def ReAgendamentoPrograma(request,id=0):
    # if this is a POST request we need to process the form data
    if request.method == 'POST':
@@ -126,7 +190,7 @@ def ReAgendamentoPrograma(request,id=0):
          'tipo': evento[0].tipo,
          'idr': id
          })
-   return render(request, 'NovoAgendamento.html', {'form': form})
+   return render(request, 'ReAgendamento.html', {'form': form})
 
 @login_required
 def ViewAgendamentos(request):
@@ -135,7 +199,7 @@ def ViewAgendamentos(request):
    mes = hoje.month
    return render(request,'Agendamentos.html',
    {
-       'hoje'    : hoje.isoformat(),
+       'hoje'    : hoje,
        'v_dia'   : Agendamentos.objects.filter(data__day = hoje.day)
                                        .filter(data__month = hoje.month)
                                        .filter(data__year = hoje.year).order_by('data').order_by('hora'),
@@ -182,8 +246,8 @@ def ViewAcompanhamentos(request):
    acomp_familias = getAcompanhentos()
    return render(request,'Acompanhamento.html',
    {
-       'acomp_histogram'    : acomp_count,
-       'dados_familias' : acomp_familias,
-       'familias_count' : Familia.objects.count(),
-       'areas_count'    : AreaPrograma.objects.count(),
+       'acomp_histogram' : acomp_count,
+       'dados_familias'  : acomp_familias,
+       'familias_count'  : Familia.objects.count(),
+       'areas_count'     : AreaPrograma.objects.count(),
    } )

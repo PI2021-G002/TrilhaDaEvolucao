@@ -27,9 +27,11 @@ urlpatterns = [
     path('ajuda/',TemplateView.as_view(template_name='ajuda.html'), name='Ajuda'),
     path('agendamentos/',ViewAgendamentos, name='agendamento'),  
     path('agendamentos/novo/programa',NovoAgendamentoPrograma,name = 'NovoAgendamento'),
-    path('agendamentos/novo/volparc',NovoAgendamentoVolParc,name = 'NovoAgendamentoVolParc'),
     path('agendamentos/novo/programa/<int:id>/',ReAgendamentoPrograma,name = 'ReAgendamento'),
-    path('agendamentos/novo/volparc/<int:id>/',ReAgendamentoVolParc,name = 'ReAgendamentoVolParc'),
+    path('agendamentos/novo/voluntario',NovoAgendamentoVoluntario,name = 'NovoAgendamentoVolParc'),
+    path('agendamentos/novo/voluntario/<int:id>/',ReAgendamentoVoluntario,name = 'ReAgendamentoVolParc'),
+    path('agendamentos/novo/parceiro',NovoAgendamentoParceiro,name = 'NovoAgendamentoVolParc'),
+    path('agendamentos/novo/parceiro/<int:id>/',ReAgendamentoParceiro,name = 'ReAgendamentoVolParc'),
     path('acompanhamentos',ViewAcompanhamentos,name = 'Acompanhamentos'),
 
 ]
