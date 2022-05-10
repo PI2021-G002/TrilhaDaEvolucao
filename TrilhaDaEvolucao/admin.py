@@ -1,7 +1,7 @@
 #admin.py
 from django.contrib import admin
 
-from .models import Familia, AreaPrograma, VoluntarioParceiro, AreaVoluntarioParceiro, AreaAtuacaoVoluntarioParceiro, AreaAcompanhamento
+from .models import Familia, AreaPrograma, Voluntario, Parceiro, AreaVoluntario, AreaParceiro, AreaAtuacaoVoluntario, AreaAtuacaoParceiro, AreaAcompanhamento
 
 class FamiliaAdmin(admin.ModelAdmin):
     fields = ['nome', 'telefone', 'ano', 'nro_membros']
@@ -15,23 +15,41 @@ class AreaProgramaAdmin(admin.ModelAdmin):
 
 admin.site.register(AreaPrograma, AreaProgramaAdmin)
 
-class VoluntarioParceiroAdmin(admin.ModelAdmin):
+class VoluntarioAdmin(admin.ModelAdmin):
        fields = ['nome', 'telefone','disponibilidade']
        list_display = ('id','nome', 'telefone','disponibilidade')
 
-admin.site.register(VoluntarioParceiro, VoluntarioParceiroAdmin)
+admin.site.register(Voluntario, VoluntarioAdmin)
 
-class AreaVoluntarioParceiroAdmin(admin.ModelAdmin):
+class ParceiroAdmin(admin.ModelAdmin):
+       fields = ['nome', 'telefone','disponibilidade']
+       list_display = ('id','nome', 'telefone','disponibilidade')
+
+admin.site.register(Parceiro, ParceiroAdmin)
+
+class AreaVoluntarioAdmin(admin.ModelAdmin):
     fields = ['nome', 'descricao']
     list_display = ('id','nome', 'descricao')
 
-admin.site.register(AreaVoluntarioParceiro, AreaVoluntarioParceiroAdmin)
+admin.site.register(AreaVoluntario, AreaVoluntarioAdmin)
 
-class AreaAtuacaoVoluntarioParceiroAdmin(admin.ModelAdmin):
-    fields = ['id_vol_par', 'id_area_vol_par']
-    list_display = ('id','id_vol_par', 'id_area_vol_par')
+class AreaParceiroAdmin(admin.ModelAdmin):
+    fields = ['nome', 'descricao']
+    list_display = ('id','nome', 'descricao')
+
+admin.site.register(AreaParceiro, AreaParceiroAdmin)
+
+class AreaAtuacaoVoluntarioAdmin(admin.ModelAdmin):
+    fields = ['id_vol', 'id_area_vol', 'descricao']
+    list_display = ('id','id_vol', 'id_area_vol', 'descricao')
     
-admin.site.register(AreaAtuacaoVoluntarioParceiro, AreaAtuacaoVoluntarioParceiroAdmin)
+admin.site.register(AreaAtuacaoVoluntario, AreaAtuacaoVoluntarioAdmin)
+
+class AreaAtuacaoParceiroAdmin(admin.ModelAdmin):
+    fields = ['id_par', 'id_area_par', 'descricao']
+    list_display = ('id','id_par', 'id_area_par', 'descricao')
+    
+admin.site.register(AreaAtuacaoParceiro, AreaAtuacaoParceiroAdmin)
 
 class AreaAcompanhamentoAdmin(admin.ModelAdmin):
     fields = ['id_familia' ,    'id_area_programa' ,    'concluido' ,  'observacao',   'completude',     'data_termino'    ]

@@ -27,3 +27,6 @@ http://devfuria.com.br/sql/mysql-pelo-terminal/
 https://stackoverflow.com/questions/7475223/mysql-config-not-found-when-installing-mysqldb-python-interface
 
 https://stackoverflow.com/questions/2701696/is-it-possible-to-replace-values-in-a-queryset-before-sending-it-to-your-templat
+
+https://www.section.io/engineering-education/customizing-django-admin/
+

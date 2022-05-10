@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block conteudo %}
+<div class="d-grid gap-10 col-6 mx-auto">
+
+	  <h2>Re-agendamento</h2>
+
+	<form method="POST">
+		<table class="table table-sm">
+			{% csrf_token %}
+			{{ form.idr }}
+
+			{{ form.as_table }}
+
+		</table>
+		<button type="submit" class="btn btn-primary">Enviar</button>
+	</form>
+</div>
+{% endblock conteudo %}
